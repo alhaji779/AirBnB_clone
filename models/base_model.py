@@ -7,11 +7,22 @@ class BaseModel:
     """ Base module is the Base Class of the AirBNB app, it will be the base for other classes.
         Functions and attributes that custs across other classes will be defined here
     """
-    def __init__(self):
-        """ This is the constructor of the Base Module """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """ This is the constructor of the Base Module
+            Modified to accept dict arg as parameter if provided
+        """
+        if kwargs:
+            for k, v in kwargs.items():
+                if k == '__class__':
+                    pass
+                elif k == 'created_at' or k == 'updated_at':
+                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    setattr(self, k, v)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """ This is the default print content of the base module """
