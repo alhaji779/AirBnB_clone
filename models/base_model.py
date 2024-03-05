@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models
 """ This is the Base Module where other classes will feed from """
 
 class BaseModel:
@@ -23,6 +24,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+        models.storage.new(self)
 
     def __str__(self):
         """ This is the default print content of the base module """
@@ -33,6 +35,7 @@ class BaseModel:
             It updates the Updated_date to current time
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """ This converts an object instance to a dictionary structure for serialization """
