@@ -157,6 +157,24 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
 
+    def default(self, line):
+        """ This method overrides the default cmd input pattern to allow custom input
+            i.e. instead of do_task, you can use Class.task()
+        """
+        arg = line.split(".")
+        cls = arg[0]
+        func_call = arg[1].split("(")[0]
+        #print(cls, func_call)
+
+        func_dict = { "all": "do_all", "create": "do_create", "show": "do_show", "destroy": "do_destroy", "update": "do_update"}
+
+        if func_call == "all":
+            self.do_all(cls)
+
+        else:
+            print("** Invalid command **")
+
+
 
 
 if __name__ == '__main__':
