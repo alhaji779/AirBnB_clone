@@ -70,6 +70,24 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
+    def do_count(self, line):
+        """ This function is used to count number if instance of any class stored to file """
+        count = 0
+        all_obj = storage.all()
+        arg = line.split()
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
+        if arg[0] not in self.class_list:
+            print("** class doesn't exist **")
+            return
+        if arg[0] in self.class_list:
+            for k, v in all_obj.items():
+                if k.split(".")[0] == arg[0]:
+                    count+=
+            return
+
+
 
     def do_destroy(self, line):
         """ This function deletes the content of a Class given its id
