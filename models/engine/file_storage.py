@@ -2,6 +2,7 @@
 """ The class serves to store data temporality to file """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
