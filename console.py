@@ -87,11 +87,12 @@ class HBNBCommand(cmd.Cmd):
         if arg[0] not in self.class_list:
             print("** class doesn't exist **")
             return
-        if arg[0] in self.class_list:
+        if line in self.class_list:
             for k, v in all_obj.items():
-                if k.split(".")[0] == arg[0]:
-                    count+=
-            return
+                #print(k.split(".")[0])
+                if k.split(".")[0] == line:
+                    count=count+1
+            print(count)
 
 
 
@@ -188,6 +189,9 @@ class HBNBCommand(cmd.Cmd):
 
         if func_call == "all":
             self.do_all(cls)
+
+        elif func_call == "count":
+            self.do_count(cls)
 
         else:
             print("** Invalid command **")
