@@ -4,13 +4,19 @@
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """ THis class helps us interacted with the AIrBNB backend project """
 
     prompt = "(hbnb) "
-    class_list = ['BaseModel']
+    class_list = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
 
     def do_quit(self, line):
         """ function to quit the program
@@ -167,6 +173,24 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+
+
+    def default(self, line):
+        """ This method overrides the default cmd input pattern to allow custom input
+            i.e. instead of do_task, you can use Class.task()
+        """
+        arg = line.split(".")
+        cls = arg[0]
+        func_call = arg[1].split("(")[0]
+        #print(cls, func_call)
+
+        func_dict = { "all": "do_all", "create": "do_create", "show": "do_show", "destroy": "do_destroy", "update": "do_update"}
+
+        if func_call == "all":
+            self.do_all(cls)
+
+        else:
+            print("** Invalid command **")
 
 
 
