@@ -141,39 +141,65 @@ odule").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyCl
 
 * Your shell should work like this in interactive mode:
 
-$ ./console.py
-(hbnb) help
+	$ ./console.py
+	
+	(hbnb) help
 
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
 
-(hbnb) 
-(hbnb) 
-(hbnb) quit
-$
+	Documented commands (type help <topic>):
+
+	========================================
+
+	EOF  help  quit
+
+
+	(hbnb) 
+
+	(hbnb) 
+
+	(hbnb) quit
+
+	$
 
 * But also in non-interactive mode: (like the Shell project in C)
 
-$ echo "help" | ./console.py
-(hbnb)
+	
+	$ echo "help" | ./console.py
 
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb) 
-$
-$ cat test_help
-help
-$
-$ cat test_help | ./console.py
-(hbnb)
+	(hbnb)
 
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb) 
-$
+
+	Documented commands (type help <topic>):
+
+	========================================
+
+	EOF  help  quit
+	
+	(hbnb) 
+
+	$
+
+	$ cat test_help
+
+	help
+	
+	$
+
+	$ cat test_help | ./console.py
+
+	(hbnb)
+
+
+	Documented commands (type help <topic>):
+
+	========================================
+	
+	EOF  help  quit
+
+
+	(hbnb) 
+
+	$
 
 * All tests should also pass in non-interactive mode: $ echo "python3 -m unittest discover tests" | bash
 
