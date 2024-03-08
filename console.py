@@ -184,7 +184,9 @@ class HBNBCommand(cmd.Cmd):
         cls = arg[0]
         func_call = arg[1].split("(")[0]
         cls_id = arg[1].split("(")[1].split(")")[0]
-        #print(cls, func_call, cls_id)
+        #attr_name = attr_body[0]
+        #attr_value = attr_body[0]
+        #print(cls_id)
 
         func_dict = { "all": "do_all", "create": "do_create", "show": "do_show", "destroy": "do_destroy", "update": "do_update"}
 
@@ -199,9 +201,14 @@ class HBNBCommand(cmd.Cmd):
             #print("test")
         elif func_call == "destroy":
             self.do_destroy(cls+" "+ eval(cls_id))
+        elif func_call == "update":
+            new_id = cls_id.split(",")[0]
+            attr_name = cls_id.split(",")[1]
+            attr_value = cls_id.split(",")[2]
+            self.do_update(cls+" "+ eval(new_id)+ " "+ eval(attr_name)+" "+ attr_value)
 
         else:
-            print("** Invalid command **")
+            print("*** Unknown syntax: {}".format(line))
 
 
 
