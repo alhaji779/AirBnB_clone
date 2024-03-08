@@ -183,7 +183,8 @@ class HBNBCommand(cmd.Cmd):
         arg = line.split(".")
         cls = arg[0]
         func_call = arg[1].split("(")[0]
-        #print(cls, func_call)
+        cls_id = arg[1].split("(")[1].split(")")[0]
+        #print(cls, func_call, cls_id)
 
         func_dict = { "all": "do_all", "create": "do_create", "show": "do_show", "destroy": "do_destroy", "update": "do_update"}
 
@@ -192,6 +193,12 @@ class HBNBCommand(cmd.Cmd):
 
         elif func_call == "count":
             self.do_count(cls)
+
+        elif func_call == "show":
+            self.do_show(cls+" "+ eval(cls_id))
+            #print("test")
+        elif func_call == "destroy":
+            self.do_destroy(cls+" "+ eval(cls_id))
 
         else:
             print("** Invalid command **")
