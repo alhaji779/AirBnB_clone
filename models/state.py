@@ -3,6 +3,7 @@
 
 from models.base_model import BaseModel
 
+
 class State(BaseModel):
     """ This class stores the various states where accommodation exist """
 

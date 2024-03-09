@@ -5,8 +5,8 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """ This class inherits from BaseModel and is used to manage users authentication """
-    
+    """ This cls feed from BaseModel and is used to manage urs IDs """
+
     email = ""
     password = ""
     first_name = ""

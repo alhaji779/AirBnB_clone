@@ -4,10 +4,9 @@ from datetime import datetime
 import models
 """ This is the Base Module where other classes will feed from """
 
+
 class BaseModel:
-    """ Base module is the Base Class of the AirBNB app, it will be the base for other classes.
-        Functions and attributes that custs across other classes will be defined here
-    """
+    """ Functions and attributes that custs across other classes """
     def __init__(self, *args, **kwargs):
         """ This is the constructor of the Base Module
             Modified to accept dict arg as parameter if provided
@@ -17,7 +16,9 @@ class BaseModel:
                 if k == '__class__':
                     pass
                 elif k == 'created_at' or k == 'updated_at':
-                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(
+                        self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
+                    )
                 else:
                     setattr(self, k, v)
         else:
@@ -28,7 +29,9 @@ class BaseModel:
 
     def __str__(self):
         """ This is the default print content of the base module """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__
+        )
 
     def save(self):
         """ This method is called when a new or existing instance is saved.
@@ -38,10 +41,10 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """ This converts an object instance to a dictionary structure for serialization """
+        """ This converts an object instance to a dictionary structur """
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
         new_dict['created_at'] = self.created_at.isoformat()
         new_dict['updated_at'] = self.updated_at.isoformat()
-        
+
         return new_dict

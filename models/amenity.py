@@ -7,4 +7,3 @@ class Amenity(BaseModel):
     """ This class manages the amenities available in an accommodation """
 
     name = ""
-
