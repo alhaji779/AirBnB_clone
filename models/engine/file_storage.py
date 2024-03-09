@@ -11,7 +11,7 @@ from models.review import Review
 
 
 class FileStorage:
-    """ This class will handle data persistency by serializing and deserializing
+    """ This class will handle data persistency by serializing
         the object.
     """
     __file_path = "file.json"
@@ -22,13 +22,13 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """ This method creates a new instance of BaseModule 
+        """ This method creates a new instance of BaseModule
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """ This method saves any instance of base module captured to file
+        """ This method saves any instance of base module
             This is the serialized data in json format
         """
         new_obj = dict()
@@ -38,9 +38,8 @@ class FileStorage:
         with open(FileStorage.__file_path, 'w', encoding='utf-8') as f:
             json.dump(new_obj, f)
 
-
     def reload(self):
-        """ This method retrieves object data from file and restore as an instance.
+        """ This method retrieves object data from file.
             With this the data is persistant
         """
         new_obj = dict()
