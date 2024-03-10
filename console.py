@@ -166,12 +166,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = "{}.{}".format(arg[0],arg[1])
             obj_all = storage.all()
-            up_dict = re.search(r"\{(.*?)\}", line).group(1)
-            #st_idx = line.find('{')
-            #ed_idx = line.rfind(']')
-            new_dict = ast.literal_eval("{"+ up_dict + "}")
-            if up_dict:
-                print(new_dict)
             if key in obj_all.keys():
                 attr = arg[2]
                 val = eval(arg[3])
